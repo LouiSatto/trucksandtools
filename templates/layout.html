@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="/static/styles.css" rel="stylesheet">
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <title>Genba plan</title>
+        {% block style %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <header class="topnav">
+                <a class="active" href="/home">HOME</a>
+                <a href="/workers">Workers</a>
+                <a href="/cars">Cars</a>
+                <a href="/history">History</a>
+                <div class="login">
+                    <a href="/history">Log Out</a>
+                </div>
+            </header>
+            {% block body %}
+            {% endblock %}
+            <footer class="rodape">footer</footer>
+        </div>
+    </body>
+
+</html>

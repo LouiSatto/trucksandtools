@@ -1,0 +1,237 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+textarea {
+    height: 50px;
+    resize: vertical;
+    margin: 5px;
+}
+
+hr {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(63, 179, 134);
+    margin: 0;
+    padding: 0
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8vh 87vh 5vh;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "mp mf";
+    /* justify-items: stretch; */
+    /* align-items: stretch; */
+    grid-area: main;
+    grid-gap: 5px;
+    background: #ffffff;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: #f2f2f2;
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    bottom: 0px;
+    position: fixed;
+}
+
+
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.topnav .login{
+    float: right;
+}
+
+#map {
+    widows: 100%;
+    height: 400px;
+}
+
+.mainform {
+    /* background:rgb(242, 255, 254); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:   ;
+    grid-template-areas: "loc"
+                         "labels"
+                         "inputs" ;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* border-radius: 5px; */
+    padding: 5px;
+    grid-area: mf;
+    /* margin: 10px; */
+}
+.loc {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "le ri fi";
+    grid-area: loc;
+    /* background: #4CAF50; */
+}
+.labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+    grid-area: labels;
+    background: #ddd;
+}
+.inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /* background: brown; */
+    grid-area: inputs;
+}
+.col1 {
+    grid-area: le;
+    justify-self: end;
+}
+
+.col2 {
+    grid-area: ri;
+}
+
+.col3 {
+    grid-area: fi;
+}
+
+.col4 {
+    grid-area: te;
+}
+
+
+.mapa {
+    /* background:rgb(242, 255, 254); */
+    display: grid;
+    border-right: 1px dotted #333;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* border-radius: 5px; */
+    grid-area: mp;
+    /* margin: 10px; */
+    padding: 5px;
+}
+
+input {
+    width: 80%;
+    height: 30px;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px;
+    border: 2px solid teal;
+    transition: all 0.4s ease-in-out;
+}
+
+input:focus {
+    background-color: rgb(145, 206, 206);
+    outline: none;
+    ;
+}
+
+label {
+    padding: 4px 10px;
+}
+
+/*.titulo {
+    background-color: coral;
+}
+
+body {
+    margin: 0px;
+    height: 100%
+}
+
+.formulario {
+    background-color: violet;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.mainform {
+    padding-top: 48px;
+    background-color: royalblue;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.leftform {
+    background-color: saddlebrown;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.rightform {
+    background-color: olivedrab;
+    width: 50%;
+    display: flex;
+}
+
+.mapa {
+    background-color: tomato;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+
+.conteudo {
+    margin-top: 48px;
+    margin-left: 10px;
+    background-color: teal;
+    display: block;
+} */

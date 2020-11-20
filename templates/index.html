@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<main>
+    <div class="formulario">
+        <form class="mainform" name="mainform" action="">   
+            <datalist id="workers">
+                <option value="Luis">
+                <option value="kiet">
+                <option value="doo">
+                <option value="Luan">
+            </datalist>
+            
+            <div class="loc">
+                <label class="col1">Location :</label>
+                <input class="col2" type="text" id="lat" readonly="yes">
+                <input class="col3" type="text" id="lng" readonly="yes">
+            </div>
+            <div class="labels">
+                <label>worker1</label>
+                <label>worker2</label>
+                <label>car</label>
+                <label>notes</label>
+            </div>
+            <div class="inputs">
+                <input list="workers"/>
+                <input list="workers"/>
+                <input list="cars"/>
+                <textarea oninput="auto_grow(this)" cols="20"></textarea>
+                <!-- <hr> -->
+                <input list="workers"/>
+                <input list="workers"/>
+                <input list="cars"/>
+                <textarea oninput="auto_grow(this)" cols="20"></textarea>
+            </div>
+
+                
+            </form>
+    </div>
+    <div class="mapa">
+        <map class="conteudo">
+            <h1>Select a location!</h1>
+        <p>Click on a location on the map to select it. Drag the marker to change location.</p>
+        
+        <!--map div-->
+        <div id="map"></div>
+        
+        <!--our form-->
+        <!-- <h2>Chosen Location</h2>
+        <form method="post">
+            <input type="text" id="lat" readonly="yes">
+            <input type="text" id="lng" readonly="yes">
+        </form> -->
+        
+        <script type="text/javascript" src="../static/map.js"></script>
+        <script>
+            function auto_grow(element) {
+                element.style.height = "46px";
+                element.style.height = (element.scrollHeight)+"px";
+            }
+        </script>
+        </map>
+    </div>
+
+</main>
+{% endblock %}
