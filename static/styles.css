@@ -106,7 +106,7 @@ footer {
     /* background:rgb(242, 255, 254); */
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows:   ;
+    /* grid-template-rows:   ; */
     grid-template-areas: "loc"
                          "labels"
                          "inputs" ;
