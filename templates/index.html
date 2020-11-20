@@ -22,18 +22,15 @@
                 <label>car</label>
                 <label>notes</label>
             </div>
-            <div class="inputs">
-                <input list="workers"/>
-                <input list="workers"/>
-                <input list="cars"/>
-                <textarea oninput="auto_grow(this)" cols="20"></textarea>
-                <!-- <hr> -->
+            <div id="inputs" class="inputs">
                 <input list="workers"/>
                 <input list="workers"/>
                 <input list="cars"/>
                 <textarea oninput="auto_grow(this)" cols="20"></textarea>
             </div>
-
+            <div>
+                <button id="btn">+</button>
+            </div>
                 
             </form>
     </div>
@@ -42,21 +39,46 @@
             <h1>Select a location!</h1>
         <p>Click on a location on the map to select it. Drag the marker to change location.</p>
         
-        <!--map div-->
         <div id="map"></div>
         
-        <!--our form-->
-        <!-- <h2>Chosen Location</h2>
-        <form method="post">
-            <input type="text" id="lat" readonly="yes">
-            <input type="text" id="lng" readonly="yes">
-        </form> -->
-        
         <script type="text/javascript" src="../static/map.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
             function auto_grow(element) {
                 element.style.height = "46px";
                 element.style.height = (element.scrollHeight)+"px";
+            }
+
+            var count=1;
+            $("#btn").click(function(e){
+                e.preventDefault();            
+                $("#inputs").append(addNewRow(count));
+                count++;
+            });
+
+            function addNewRow(count){
+            var newrow='<input list="workers"/>'+
+                '<input list="workers"/>'+
+                '<input list="cars"/>'+
+                '<textarea oninput="auto_grow(this)" cols="20"></textarea>';
+            
+            
+            
+            // '<div class="row">'+
+            //     '<div class="col-md-4">'+
+            //         '<div class="form-group label-floating">'+
+            //             '<label class="control-label">Act '+count+'</label>'+
+            //             '<input type="text" class="form-control" v-model="act" >'+
+            //         '</div>'+
+            //     '</div>'+
+            //     '<div class="col-md-4">'+
+            //         '<div class="form-group label-floating">'+
+            //             '<label class="control-label">Section '+count+'</label>'+
+            //             '<input type="text" class="form-control" v-model="section">'+
+            //         '</div>'+
+            //     '</div>'+    
+            // '</div>';
+            return newrow;
             }
         </script>
         </map>
