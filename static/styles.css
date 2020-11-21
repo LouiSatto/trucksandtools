@@ -13,20 +13,42 @@ textarea {
     margin: 5px;
 }
 
-hr {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid rgb(63, 179, 134);
-    margin: 0;
-    padding: 0
+#btn {
+    margin-left: 5px;
 }
+
+.formbuttons {
+    display: flex;
+    justify-content: flex-end;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    /* background: #4CAF50; */
+    
+}
+
+.formbuttons button {
+    background:  #4CAF50;
+    margin: 5px;
+    width: 23%;
+    height: 60px;
+    /* justify-self: center; */
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid teal;
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+    
+}
+
+.formbuttons button:hover {
+    background: rgb(49, 207, 49);
+}
+
+
 
 .container{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 8vh 87vh 5vh;
+    grid-template-rows: 8vh 87vh 0vh;
     grid-template-areas: "header"
                          "main"
                          "footer";
@@ -39,16 +61,16 @@ header {
 main {
     margin: 10px;
     padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 100%;
     grid-template-areas: "mp mf";
     /* justify-items: stretch; */
     /* align-items: stretch; */
     grid-area: main;
     grid-gap: 5px;
-    background: #ffffff;
+    /* background: #ffffff; */
 }
 
 footer {
@@ -59,8 +81,8 @@ footer {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    bottom: 0px;
-    position: fixed;
+    /* bottom: 0px; */
+    /* position: fixed; */
 }
 
 
@@ -184,54 +206,3 @@ input:focus {
 label {
     padding: 4px 10px;
 }
-
-/*.titulo {
-    background-color: coral;
-}
-
-body {
-    margin: 0px;
-    height: 100%
-}
-
-.formulario {
-    background-color: violet;
-    float: left;
-    width: 50%;
-    height: 100%;
-}
-
-.mainform {
-    padding-top: 48px;
-    background-color: royalblue;
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-}
-
-.leftform {
-    background-color: saddlebrown;
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-}
-.rightform {
-    background-color: olivedrab;
-    width: 50%;
-    display: flex;
-}
-
-.mapa {
-    background-color: tomato;
-    float: left;
-    width: 50%;
-    height: 100%;
-}
-
-
-.conteudo {
-    margin-top: 48px;
-    margin-left: 10px;
-    background-color: teal;
-    display: block;
-} */
