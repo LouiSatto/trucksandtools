@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<main>
+<main id="plan">
     <div class="formulario">
         <form class="mainform" name="mainform" action="">   
             <datalist id="workers">
@@ -48,7 +48,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
             function auto_grow(element) {
-                element.style.height = "46px";
+                element.style.height = "52px";
                 element.style.height = (element.scrollHeight)+"px";
             }
 
@@ -64,23 +64,6 @@
                 '<input list="workers"/>'+
                 '<input list="cars"/>'+
                 '<textarea oninput="auto_grow(this)" cols="20"></textarea>';
-            
-            
-            
-            // '<div class="row">'+
-            //     '<div class="col-md-4">'+
-            //         '<div class="form-group label-floating">'+
-            //             '<label class="control-label">Act '+count+'</label>'+
-            //             '<input type="text" class="form-control" v-model="act" >'+
-            //         '</div>'+
-            //     '</div>'+
-            //     '<div class="col-md-4">'+
-            //         '<div class="form-group label-floating">'+
-            //             '<label class="control-label">Section '+count+'</label>'+
-            //             '<input type="text" class="form-control" v-model="section">'+
-            //         '</div>'+
-            //     '</div>'+    
-            // '</div>';
             return newrow;
             }
         </script>
