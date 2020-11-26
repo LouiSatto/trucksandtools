@@ -3,7 +3,7 @@
 {% block body %}
 <main id="plan">
     <div class="formulario">
-        <form class="mainform" name="mainform" action="">   
+        <form class="mainform" name="mainform" action="/" method="POST">   
             <datalist id="workers">
                 <option value="Luis">
                 <option value="kiet">
@@ -13,8 +13,8 @@
             
             <div class="loc">
                 <label class="col1">Location :</label>
-                <input class="col2" type="text" id="lat" readonly="yes">
-                <input class="col3" type="text" id="lng" readonly="yes">
+                <input name="latitude" class="col2" type="text" id="lat" readonly="yes">
+                <input name="longitude" class="col3" type="text" id="lng" readonly="yes">
             </div>
             <div class="labels">
                 <label>worker1</label>
@@ -23,19 +23,20 @@
                 <label>notes</label>
             </div>
             <div id="inputs" class="inputs">
-                <input list="workers"/>
-                <input list="workers"/>
-                <input list="cars"/>
-                <textarea oninput="auto_grow(this)" cols="20"></textarea>
+                <input name="worker1" list="workers"/>
+                <input name="worker2" list="workers"/>
+                <input name="car" list="cars"/>
+                <textarea name="notes" oninput="auto_grow(this)" cols="20"></textarea>
             </div>
             <div>
                 <button id="btn">+</button>
             </div>
             <div class="formbuttons">
-                <button>Save</button>
+                <button type="submit">Save</button>
                 <button>Send</button>
             </div>
             </form>
+            <h1>{{worker1}}</h1>
     </div>
     <div class="mapa">
         <map class="conteudo">
