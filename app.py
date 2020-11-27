@@ -1,7 +1,7 @@
 import sqlite3
 from flask import Flask, render_template, request
 
-db = sqlite3.connect('database.db')
+db = sqlite3.connect('database.db', check_same_thread=False)
 
 app = Flask(__name__)
 
@@ -15,7 +15,10 @@ def index():
 
 @app.route('/workers')
 def workers():
-    return render_template('workers.html', page='workers')
+    cur = db.cursor()
+    cur.execute("SELECT * from workers")
+    workers = cur.fetchall()
+    return render_template('workers.html', page='workers', workers = workers)
 
 @app.route('/cars')
 def cars():
