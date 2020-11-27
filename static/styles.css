@@ -43,7 +43,12 @@ textarea {
     background: rgb(49, 207, 49);
 }
 
-
+.btWorker {
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+    padding: 5px;
+}
 
 .container{
     display: grid;

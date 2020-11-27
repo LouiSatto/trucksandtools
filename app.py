@@ -7,18 +7,54 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
 def index():
+    workers_cur = db.cursor()
+    workers_cur.execute("SELECT * from workers")
+    workers = workers_cur.fetchall()
     if request.method == "POST":
         worker1 = request.form.get("worker1")
         # db.execute("INSERT INTO transactions (type, userid, share, qty, price) VALUES (?,?,?,?,?)", ("buy", int(session.get("user_id")), share["symbol"], int(request.form.get("shares")), price))
-        return render_template('index.html', page='home', worker1 = worker1)
-    return render_template('index.html', page='home')
+        return render_template('index.html', page='home', worker1 = worker1, workers = workers)
+    return render_template('index.html', page='home', workers = workers)
 
-@app.route('/workers')
+@app.route('/workers', methods=["GET", "POST"])
 def workers():
     cur = db.cursor()
     cur.execute("SELECT * from workers")
     workers = cur.fetchall()
-    return render_template('workers.html', page='workers', workers = workers)
+    if request.method == "POST":
+        if request.form.get("btAction") == "del":
+            formname = "delete"
+
+        elif request.form.get("btAction") == "alt":
+            formname = "update"
+
+        elif request.form.get("btAction") == "add":
+            name = request.form.get("name")
+            email = request.form.get("email")
+            phone = request.form.get("phone")
+            if name == "":
+                formname = "insert a name"
+                return render_template('workers.html', page='workers', workers = workers, formname = formname)
+            elif email == "":
+                formname = "insert an email"
+                return render_template('workers.html', page='workers', workers = workers, formname = formname)
+            elif phone == "":
+                formname = "insert a phone number"
+                return render_template('workers.html', page='workers', workers = workers, formname = formname)
+            else:
+                formname = "new worker added!"
+                cur.execute("INSERT INTO workers (name, email, phone) VALUES (?,?,?)", (name, email, phone))
+                db.commit()
+                cur = db.cursor()
+                cur.execute("SELECT * from workers")
+                workers = cur.fetchall()
+                return render_template('workers.html', page='workers', workers = workers, formname = formname)
+
+            formname = "Add"
+        return render_template('workers.html', page='workers', workers = workers, formname = formname)
+
+    formname = "nada"
+    return render_template('workers.html', page='workers', workers = workers, formname = formname)
 
 @app.route('/cars')
 def cars():

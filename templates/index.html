@@ -5,10 +5,9 @@
     <div class="formulario">
         <form class="mainform" name="mainform" action="/" method="POST">   
             <datalist id="workers">
-                <option value="Luis">
-                <option value="kiet">
-                <option value="doo">
-                <option value="Luan">
+                {% for row in workers: %}
+                <option value="{{row[1]}}">
+                {% endfor %}
             </datalist>
             
             <div class="loc">
