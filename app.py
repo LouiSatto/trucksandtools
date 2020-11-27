@@ -23,8 +23,15 @@ def workers():
     workers = cur.fetchall()
     if request.method == "POST":
         if request.form.get("btAction") == "del":
-            formname = "delete"
-
+            idNumber = request.form.get("idNumber")
+            cur.execute("delete from workers where id=?", (idNumber))
+            db.commit()
+            formname = "worker deleted!"
+            cur.execute("SELECT * from workers")
+            workers = cur.fetchall()
+            idNumber = ""
+            return render_template('workers.html', page='workers', workers = workers, formname = formname)
+        
         elif request.form.get("btAction") == "alt":
             formname = "update"
 
@@ -42,6 +49,17 @@ def workers():
                 formname = "insert a phone number"
                 return render_template('workers.html', page='workers', workers = workers, formname = formname)
             else:
+                for row in workers:
+                    if row[2] == email:
+                        formname = "Email already exist"
+                        return render_template('workers.html', page='workers', workers = workers, formname = formname)
+                    if row[1] == name:
+                        formname = "Name already exist"
+                        return render_template('workers.html', page='workers', workers = workers, formname = formname)
+                    if row[3] == phone:
+                        formname = "phone number already exist"
+                        return render_template('workers.html', page='workers', workers = workers, formname = formname)
+
                 formname = "new worker added!"
                 cur.execute("INSERT INTO workers (name, email, phone) VALUES (?,?,?)", (name, email, phone))
                 db.commit()
