@@ -29,13 +29,13 @@
               </tr>
           </form>
           {% endfor %}
-          <form name="addworker" action="/workers" method="POST">
+          <form name="addworker" action="/workers" method="POST" autocomplete="off">
             <th scope="row">#</th>
             <td><input name="name" placeholder="Name"></td>
             <td><input name="email" placeholder="Email"></td>
             <td><input name="phone" placeholder="Phone"></td>
             <input type="hidden" name="btAction" value="add">
-            <td><button>Add</button></td>
+            <td><input class="btWorker" type="submit" value="add"></td>
             
           </form>
           <td></td>
@@ -43,5 +43,10 @@
       </table>
 
 </main>
+<script>
+  $(document).ready(function() {
+    $('input').attr('autocomplete', 'off');
+  });
+</script>
 
 {% endblock %}

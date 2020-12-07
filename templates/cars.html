@@ -2,36 +2,50 @@
 
 {% block body %}
 <main id="workers">
+  <h1>{{formname}}</h1>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Name</th>
+            <th scope="col">Kind</th>
+            <th scope="col">Plate</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% for row in cars: %}
+            <form name="showcar" action="/cars" method="POST">
+              <tr>
+                <!-- <th scope="row">1</th> -->
+                <th scope="row">{{row[0]}}</th>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+                <td>
+                  <input type="hidden" name="idNumber" value="{{row[0]}}">
+                  <input class="btWorker" type="submit" name="btAction" value="alt">
+                  <input class="btWorker" type="submit" name="btAction" value="del"></td>
+              </tr>
+          </form>
+          {% endfor %}
+          <form name="addcar" action="/cars" method="POST" autocomplete="off">
+            <th scope="row">#</th>
+            <td><input name="name" placeholder="Name"></td>
+            <td><input name="kind" placeholder="Kind"></td>
+            <td><input name="plate" placeholder="Plate"></td>
+            <input type="hidden" name="btAction" value="add">
+            <td><input class="btWorker" type="submit" value="add"></td>
+            
+          </form>
+          <td></td>
         </tbody>
       </table>
+
 </main>
+<script>
+  $(document).ready(function() {
+    $('input').attr('autocomplete', 'off');
+  });
+</script>
 
 {% endblock %}

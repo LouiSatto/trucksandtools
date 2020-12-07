@@ -10,10 +10,23 @@
                 {% endfor %}
             </datalist>
             
+            <datalist id="cars">
+                {% for row in cars: %}
+                <option value="{{row[1]}}">
+                {% endfor %}
+            </datalist>
+            
+            <div class="local_labels">
+                <label>Local name</label>
+                <label>Latitude</label>
+                <label>longitude</label>
+                <label>notes</label>
+            </div>
             <div class="loc">
-                <label class="col1">Location :</label>
+                <input name="local_name"/>
                 <input name="latitude" class="col2" type="text" id="lat" readonly="yes">
                 <input name="longitude" class="col3" type="text" id="lng" readonly="yes">
+                <textarea name="local_notes" oninput="auto_grow(this)" cols="20"></textarea>
             </div>
             <div class="labels">
                 <label>worker1</label>
@@ -22,10 +35,10 @@
                 <label>notes</label>
             </div>
             <div id="inputs" class="inputs">
-                <input name="worker1" list="workers"/>
-                <input name="worker2" list="workers"/>
-                <input name="car" list="cars"/>
-                <textarea name="notes" oninput="auto_grow(this)" cols="20"></textarea>
+                <input name="worker1-0" list="workers"/>
+                <input name="worker2-0" list="workers"/>
+                <input name="car-0" list="cars"/>
+                <textarea name="notes-0" oninput="auto_grow(this)" cols="20"></textarea>
             </div>
             <div>
                 <button id="btn">+</button>
@@ -34,8 +47,11 @@
                 <button type="submit">Save</button>
                 <button>Send</button>
             </div>
-            </form>
-            <h1>{{worker1}}</h1>
+        </form>
+            <h2>data 1 {{date}}</h2>
+            {% for row in data: %}
+                <p>{{row}}</p>
+            {% endfor %}
     </div>
     <div class="mapa">
         <map class="conteudo">
@@ -49,7 +65,7 @@
         <script>
             function auto_grow(element) {
                 element.style.height = "52px";
-                element.style.height = (element.scrollHeight)+"px";
+                element.style.height = (element.scrollHeight + 5)+"px";
             }
 
             var count=1;
@@ -60,13 +76,18 @@
             });
 
             function addNewRow(count){
-            var newrow='<input list="workers"/>'+
-                '<input list="workers"/>'+
-                '<input list="cars"/>'+
-                '<textarea oninput="auto_grow(this)" cols="20"></textarea>';
+            var newrow='<input name="worker1-'+count+'" list="workers" autocomplete = "off"/>'+
+                '<input name="worker2-'+count+'" list="workers" autocomplete = "off"/>'+
+                '<input name="car-'+count+'" list="cars" autocomplete = "off"/>'+
+                '<textarea name="notes-'+count+'" oninput="auto_grow(this)" cols="20"></textarea>';
             return newrow;
             }
         </script>
+            <script>
+                $(document).ready(function() {
+                  $('input').attr('autocomplete', 'off');
+                });
+              </script>
         </map>
     </div>
 

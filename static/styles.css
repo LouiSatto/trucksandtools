@@ -11,6 +11,8 @@ textarea {
     height: 50px;
     resize: vertical;
     margin: 5px;
+    overflow: auto;
+    
 }
 
 #btn {
@@ -130,11 +132,13 @@ footer {
 }
 
 .mainform {
+    margin-top: 50px;
     /* background:rgb(242, 255, 254); */
     display: grid;
     grid-template-columns: 1fr;
     /* grid-template-rows:   ; */
-    grid-template-areas: "loc"
+    grid-template-areas: "local_labels"
+                         "loc"
                          "labels"
                          "inputs" ;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
@@ -143,6 +147,14 @@ footer {
     grid-area: mf;
     /* margin: 10px; */
 }
+
+.local_labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-area: local_labels;
+    background: #ddd;
+}
+
 .loc {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
