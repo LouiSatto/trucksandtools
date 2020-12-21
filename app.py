@@ -17,11 +17,40 @@ def index():
     if request.method == "POST":
         data = request.form
         date = datetime.now()
+
         daily_cur = db.cursor()
         daily_cur.execute("INSERT INTO daily (date, local, latitude, longitude, notes) VALUES (?,?,?,?,?)",
                          (date, data["local_name"], data["latitude"], data["longitude"], data["local_notes"]))
         db.commit()
-        return render_template('index.html', page='home', data = data, workers = workers, cars = cars, date = date)
+
+        #get total escalation
+        get_last = []
+        for v in request.form.items():
+            get_last.append(v)
+
+        last = get_last[-1]
+        last_key, last_valor = last
+        max_plan = int(last_key[-1]) + 1
+        
+        esc_valor = []
+        daily_id_cur = db.cursor()
+        daily_id_early = daily_id_cur.execute("SELECT id FROM daily WHERE date = ?", (date,))
+        
+        daily_id = daily_id_early.fetchone()
+        for row in daily_id:
+            daily_id_fim = row
+
+        for esc in range(max_plan):
+            for key, value in get_last:
+                if key[-1] == str(esc):
+                    esc_valor.append(value)
+            esc_cur = db.cursor()
+            esc_cur.execute("INSERT INTO escalation (worker1, worker2, car, notes, daily_id) VALUES (?,?,?,?,?)" ,
+                           (esc_valor[0], esc_valor[1], esc_valor[2], esc_valor[3], daily_id_fim))
+            db.commit()
+            esc_valor = []
+
+        return render_template('index.html', page='home', data = data, workers = workers, cars = cars, date = daily_id_fim)
     return render_template('index.html', page='home', workers = workers, cars = cars)
 
 @app.route('/workers', methods=["GET", "POST"])
