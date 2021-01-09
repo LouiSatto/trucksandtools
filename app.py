@@ -1,10 +1,19 @@
 import sqlite3
+import dateutil
+from dateutil import parser
 from datetime import datetime
 from flask import Flask, render_template, request
 
 db = sqlite3.connect('database.db', check_same_thread=False)
 
 app = Flask(__name__)
+
+@app.template_filter('strftime')
+def _jinja2_filter_datetime(date, fmt=None):
+    date = dateutil.parser.parse(date)
+    native = date.replace(tzinfo=None)
+    format='%b %d, %Y'
+    return native.strftime(format)
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -168,6 +177,15 @@ def cars():
     formname = "nada"
     return render_template('cars.html', page='cars', cars = cars, formname = formname)
 
-@app.route('/history')
+@app.route('/history', methods=["GET", "POST"])
 def history():
-    return render_template('history.html', page='history')
+
+    if request.method == "POST" :
+        
+
+
+
+    cur = db.cursor()
+    cur.execute("SELECT * from daily")
+    daily = cur.fetchall()
+    return render_template('history.html', page='history', daily = daily)

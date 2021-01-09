@@ -1,35 +1,32 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+<!-- <p>{{daily}}</p> -->
 <main id="workers">
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Date</th>
+            <th scope="col">Local</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Show</th>
           </tr>
         </thead>
         <tbody>
+          {% for row in daily: %}
+          {% set date = row[1] %}
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{row[0]}}</th>
+            <td>{{ date|strftime }}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[5]}}</td>
+            <td>
+              <input type="hidden" name="idNumber" value="{{row[0]}}">
+              <input id="show" class="btWorker" type="submit" name="btAction" value="Show">
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
 </main>
