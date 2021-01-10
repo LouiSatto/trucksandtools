@@ -16,16 +16,18 @@
         <tbody>
           {% for row in daily: %}
           {% set date = row[1] %}
-          <tr>
-            <th scope="row">{{row[0]}}</th>
-            <td>{{ date|strftime }}</td>
-            <td>{{row[2]}}</td>
-            <td>{{row[5]}}</td>
-            <td>
-              <input type="hidden" name="idNumber" value="{{row[0]}}">
-              <input id="show" class="btWorker" type="submit" name="btAction" value="Show">
-            </td>
-          </tr>
+          <form name="show" action="/show" method="POST">
+            <tr>
+              <th scope="row">{{row[0]}}</th>
+              <td>{{ date|strftime }}</td>
+              <td>{{row[2]}}</td>
+              <td>{{row[5]}}</td>
+              <td>
+                <input type="hidden" name="dailyNumber" value="{{row[0]}}">
+                <input id="show" class="btWorker" type="submit" name="btAction" value="Show">
+              </td>
+            </tr>
+          </form>
           {% endfor %}
         </tbody>
       </table>

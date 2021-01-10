@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h2>{{daily_number}}</h2>
+<!-- <p>{{escalation}}</p> -->
+
+
+
+
+<div id="showDaily">
+    <h5>Date:  {{daily[0][1]|strftime}}</h5> 
+    <h2>Local: {{daily[0][2]}}</h2>
+    <iframe id="mapao" src="http://maps.google.com/maps?q={{daily[0][4]}},{{daily[0][3]}}&z=18&output=embed" height="400" width="100%"></iframe>
+    <p></p>
+    <h5>Notes: {{daily[0][5]}}</h5> 
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Worker 1</th>
+            <th scope="col">Worker 2</th>
+            <th scope="col">Car</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in escalation: %}
+          <tr>
+            <th scope="row">{{row[1]}}</th>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

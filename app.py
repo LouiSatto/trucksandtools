@@ -179,13 +179,19 @@ def cars():
 
 @app.route('/history', methods=["GET", "POST"])
 def history():
-
-    if request.method == "POST" :
-        
-
-
-
     cur = db.cursor()
     cur.execute("SELECT * from daily")
     daily = cur.fetchall()
     return render_template('history.html', page='history', daily = daily)
+
+@app.route('/show', methods=["GET", "POST"])
+def show():
+    if request.method == "POST":
+        daily_number = request.form.get("dailyNumber")
+        cur = db.cursor()
+        cur.execute("SELECT * from escalation WHERE daily_id = ?", (daily_number,))
+        escalation = cur.fetchall()
+        cur2 = db.cursor()
+        cur2.execute("SELECT * from daily WHERE id = ?", (daily_number,))
+        daily = cur2.fetchall()
+        return render_template('show.html', page='history', escalation = escalation, daily_number = daily_number, daily = daily)

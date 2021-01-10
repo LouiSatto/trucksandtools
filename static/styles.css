@@ -136,6 +136,7 @@ footer {
     height: 80%;
 }
 
+
 .mainform {
     margin-top: 50px;
     /* background:rgb(242, 255, 254); */
@@ -143,9 +144,9 @@ footer {
     grid-template-columns: 1fr;
     /* grid-template-rows:   ; */
     grid-template-areas: "local_labels"
-                         "loc"
-                         "labels"
-                         "inputs" ;
+    "loc"
+    "labels"
+    "inputs" ;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     /* border-radius: 5px; */
     padding: 5px;
@@ -228,3 +229,14 @@ input:focus {
 label {
     padding: 4px 10px;
 }
+
+#mapao {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+/* #mapa2 {
+    height: 500px;
+    width: 500px;
+    background-color: #4CAF50;
+} */
