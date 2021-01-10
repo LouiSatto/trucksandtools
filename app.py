@@ -59,6 +59,10 @@ def index():
             db.commit()
             esc_valor = []
 
+        # LINE
+
+        
+
         return render_template('index.html', page='home', data = data, workers = workers, cars = cars, date = daily_id_fim)
     return render_template('index.html', page='home', workers = workers, cars = cars)
 
