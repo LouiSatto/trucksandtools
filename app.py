@@ -4,6 +4,9 @@ from dateutil import parser
 from datetime import datetime
 from flask import Flask, render_template, request
 
+from linebot import LineBotApi
+from linebot.models import TemplateSendMessage
+
 db = sqlite3.connect('database.db', check_same_thread=False)
 
 app = Flask(__name__)
@@ -61,7 +64,7 @@ def index():
 
         # LINE
 
-        
+
 
         return render_template('index.html', page='home', data = data, workers = workers, cars = cars, date = daily_id_fim)
     return render_template('index.html', page='home', workers = workers, cars = cars)
