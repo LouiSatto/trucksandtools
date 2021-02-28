@@ -1,11 +1,12 @@
 import sqlite3
 import dateutil
+import json
 from dateutil import parser
 from datetime import datetime
 from flask import Flask, render_template, request
 
 from linebot import LineBotApi
-from linebot.models import TemplateSendMessage
+from linebot.models import TextSendMessage
 
 db = sqlite3.connect('database.db', check_same_thread=False)
 
@@ -51,6 +52,11 @@ def index():
         daily_id = daily_id_early.fetchone()
         for row in daily_id:
             daily_id_fim = row
+        
+        ponto = "https://goo.gl/maps/evKtd9K9397s6nGr6"
+
+        texto = "local: " + data['local_name'] + "\n" + ponto + " "
+        texto = texto + "add texto \n no texto"
 
         for esc in range(max_plan):
             for key, value in get_last:
@@ -60,9 +66,22 @@ def index():
             esc_cur.execute("INSERT INTO escalation (worker1, worker2, car, notes, daily_id) VALUES (?,?,?,?,?)" ,
                            (esc_valor[0], esc_valor[1], esc_valor[2], esc_valor[3], daily_id_fim))
             db.commit()
+            texto = texto + "\n" + esc_valor[0] + ", " + esc_valor[1] + " -> " + esc_valor[2] + "\nNotes: " + esc_valor[3]
             esc_valor = []
 
         # LINE
+
+        file = open('info.json', 'r')
+        info = json.load(file)
+
+        CHANNEL_ACCESS_TOKEN = info['CHANNEL_ACCESS_TOKEN']
+        line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+
+        USER_ID = info['USER_ID']
+        messages = TextSendMessage(text=f"{texto}")
+
+        line_bot_api.push_message(USER_ID, messages)
+
 
 
 
@@ -189,6 +208,7 @@ def history():
     cur = db.cursor()
     cur.execute("SELECT * from daily")
     daily = cur.fetchall()
+    daily.sort(reverse=True)
     return render_template('history.html', page='history', daily = daily)
 
 @app.route('/show', methods=["GET", "POST"])
