@@ -53,10 +53,16 @@ def index():
         for row in daily_id:
             daily_id_fim = row
         
-        ponto = "https://goo.gl/maps/evKtd9K9397s6nGr6"
+        # ponto = "https://goo.gl/maps/evKtd9K9397s6nGr6"
+        #TEXT COMPOSITION
 
-        texto = "local: " + data['local_name'] + "\n" + ponto + " "
-        texto = texto + "add texto \n no texto"
+        lat = data["latitude"]
+        lng = data["longitude"]
+        
+        ponto = "https://maps.google.com/?q="+lat+","+lng
+
+        texto = "local: " + data['local_name'] + "\n" + ponto + "\n"
+        texto = texto + data['local_notes'] + "\n"
 
         for esc in range(max_plan):
             for key, value in get_last:
@@ -66,7 +72,7 @@ def index():
             esc_cur.execute("INSERT INTO escalation (worker1, worker2, car, notes, daily_id) VALUES (?,?,?,?,?)" ,
                            (esc_valor[0], esc_valor[1], esc_valor[2], esc_valor[3], daily_id_fim))
             db.commit()
-            texto = texto + "\n" + esc_valor[0] + ", " + esc_valor[1] + " -> " + esc_valor[2] + "\nNotes: " + esc_valor[3]
+            texto = texto + "\n" + esc_valor[0] + ", " + esc_valor[1] + " -> " + esc_valor[2] + "\nNotes: " + esc_valor[3] + "\n"
             esc_valor = []
 
         # LINE
